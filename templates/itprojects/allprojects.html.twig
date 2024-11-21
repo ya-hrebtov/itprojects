@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Проекты{% endblock %}
+
+{% block body %}
+    <h1>Проекты</h1>
+    <a href='/'>Главная</a><br>
+    <br>
+    <table border=1>
+    <tr>
+        <th>
+            Наименование
+        </th>
+        <th>
+            Кол-во разработчиков
+        </th>
+    </tr>
+    {% for proj in projects %}
+        <tr>
+            <td>
+                <a href='projects/{{ proj.ProjectID }}'>
+                    {{ proj.ProjectName }}
+                </a>
+            </td>
+            <td>
+                {{ proj.DevelopersCnt }}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

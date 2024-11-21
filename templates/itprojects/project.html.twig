@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Проект{% endblock %}
+
+{% block body %}
+    <h1>Проект</h1>
+    <a href='/'>Главная</a><br>
+    <a href='/projects/'>Все проекты</a><br>
+    <br>
+    <table border=1>
+        <tr>
+            <td>
+                Наименование
+            </td>
+            <td>
+                <input type="text" value="{{ project.ProjectName }}" id="name" name="name" maxlength="50" size="25"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Заказчик
+            </td>
+            <td>
+                <input type="text" value="{{ project.Customer }}" id="customer" name="customer"  maxlength="50" size="25"/>          
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="Сохранить" id="savedeveloper" name="savedeveloper"/>
+    <br>
+    Участвуют следующие разработчики:<br>
+    <table border=1>
+        <tr>
+            <th>
+                Полное имя
+            </th>
+        </tr>
+        {% for devel in developers %}
+            <tr>
+                <td>
+                    <a href='/developers/{{ devel.DeveloperID }}'>
+                        {{ devel.DeveloperFullName }}
+                    </a>
+                </td>
+                <td>
+                    <input type="button" value="Удалить" id="delprojdevel_{{ devel.DeveloperID }}" name="delprojdevel_{{ devel.DeveloperID }}"/>
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>
+                <select id="addprojdevel" name="addprojdevel">
+                {% for availdevel in availdevelopers %} 
+                    <option value="{{ availdevel.DeveloperID }}">
+                        {{ availdevel.DeveloperFullName }}
+                    </option>
+                {% endfor %}
+                </select>
+            </td>
+            <td>
+                <input type="button" value="Добавить" id="addprojdevel" name="addprojdevel"/>
+            </td>
+        </tr>
+    </table>
+    <br>
+    Кнопки не успел доделать. Они не работают.
+{% endblock %}

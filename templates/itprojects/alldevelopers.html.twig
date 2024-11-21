@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Разработчики{% endblock %}
+
+{% block body %}
+    <h1>Разработчики</h1>
+    <a href='/'>Главная</a><br>
+    <br>
+    <table border=1>
+    <tr>
+        <th>
+            Полное имя
+        </th>
+        <th>
+            Кол-во проектов
+        </th>
+        <th>
+            Возраст
+        </th>
+    </tr>
+    {% for devel in developers %}
+        <tr>
+            <td>
+                <a href='developers/{{ devel.DeveloperID }}'>
+                    {{ devel.DeveloperFullName }}
+                </a>
+            </td>
+            <td>
+                {{ devel.ProjectsCnt }}
+            </td>
+            <td>
+                {{ devel.Age }}
+            </td>
+            <td>
+                <input type="button" value="Уволить" id="deldevel_{{ devel.DeveloperID }}" name="deldevel_{{ devel.DeveloperID }}"/>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    <input type="button" value="Нанять" id="adddevel" name="adddevel"/>
+    <br>
+    <br>
+    Кнопки не успел доделать. Они не работают.
+{% endblock %}

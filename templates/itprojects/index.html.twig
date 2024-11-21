@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block body %}
+    <h1>Главная</h1>
+
+    <table border=1>
+    {% for section in sections %}
+        <tr>
+            <td>
+                <a href='{{ section.sectionLink }}'>
+                    {{ section.sectionName }}
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

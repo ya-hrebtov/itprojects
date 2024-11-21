@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Разработчик{% endblock %}
+
+{% block body %}
+    <h1>Разработчик</h1>
+    <a href='/'>Главная</a><br>
+    <a href='/developers/'>Все разработчики</a><br>
+    <br>
+    <table border=1>
+        <tr>
+            <td>
+                Полное имя
+            </td>
+            <td>
+                <input type="text" value="{{ developer.DeveloperFullName }}" id="name" name="name" maxlength="50" size="25"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Дата рождения
+            </td>
+            <td>
+                <input type="date" value="{{ developer.Birthday }}" id="birthday" name="birthday"/>          
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Должность
+            </td>
+            <td>
+                <input type="text" value="{{ developer.Post }}" />          
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Email
+            </td>
+            <td>
+                <input type="text" value="{{ developer.Email }}"/>          
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Телефон
+            </td>
+            <td>
+                <input type="text" value="{{ developer.Phone }}"/>          
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="Сохранить" id="savedeveloper" name="savedeveloper"/>
+    <br>
+    Принимает участие в следующих проектах:<br>
+    <table border=1>
+        <tr>
+            <th>
+                Наименование проекта
+            </th>
+        </tr>
+        {% for proj in projects %}
+            <tr>
+                <td>
+                    <a href='/projects/{{ proj.ProjectID }}'>
+                        {{ proj.ProjectName }}
+                    </a>
+                </td>
+                <td>
+                    <input type="button" value="Удалить" id="delprojdevel_{{ proj.ProjectID }}" name="delprojdevel_{{ proj.ProjectID }}"/>
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>
+                <select id="addprojdevel" name="addprojdevel">
+                {% for availproj in availprojects %} 
+                    <option value="{{ availproj.ProjectID }}">
+                        {{ availproj.ProjectName }}
+                    </option>
+                {% endfor %}
+                </select>
+            </td>
+            <td>
+                <input type="button" value="Добавить" id="addprojdevel" name="addprojdevel"/>
+            </td>
+        </tr>
+    </table>
+    <br>
+    Кнопки не успел доделать. Они не работают.
+{% endblock %}
